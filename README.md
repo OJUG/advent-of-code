@@ -8,7 +8,7 @@ Find the Advent of Code puzzles here:  http://adventofcode.com
 1. Clone this project.
 1. Add a directory labeled with your name in the root.
 1. Add your solutions to the various problems to your named directory.  Make sure you made it clear which day's puzzle your code is solving!
-1. Commit your changes back to the project!
+1. Push your changes back to the project!
 
 ### We are looking for solutions to the following days:
 * Day 1 - http://adventofcode.com/day/1
