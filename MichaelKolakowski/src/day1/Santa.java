@@ -20,4 +20,24 @@ public class Santa {
 
         return floor;
     }
+
+    public static int getFirstNegativeIndex(String floorSpec) {
+        int floor = 0;
+
+        for(int i = 0; i < floorSpec.length(); i++) {
+            if(floorSpec.charAt(i) == '(') {
+                floor += 1;
+            }
+
+            if(floorSpec.charAt(i) == ')') {
+                floor -= 1;
+            }
+
+            if(floor < 0) {
+                return i + 1;
+            }
+        }
+
+        return 0;
+    }
 }
