@@ -14,4 +14,9 @@ public class SantaTest {
         assertEquals(0, Santa.goToFloor(""));
     }
 
+    @Test
+    public void singleLeftParen() {
+        assertEquals(1, Santa.goToFloor("("));
+    }
+
 }

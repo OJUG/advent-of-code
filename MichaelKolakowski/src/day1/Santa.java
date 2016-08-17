@@ -6,6 +6,6 @@ package day1;
 public class Santa {
 
     public static int goToFloor(String floorSpec) {
-        return 0;
+        return floorSpec.length();
     }
 }
