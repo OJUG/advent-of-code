@@ -6,6 +6,18 @@ package day1;
 public class Santa {
 
     public static int goToFloor(String floorSpec) {
-        return floorSpec.length();
+        int floor = 0;
+
+        for(int i = 0; i < floorSpec.length(); i++) {
+            if(floorSpec.charAt(i) == '(') {
+                floor += 1;
+            }
+
+            if(floorSpec.charAt(i) == ')') {
+                floor -= 1;
+            }
+        }
+
+        return floor;
     }
 }
