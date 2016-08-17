@@ -5,17 +5,15 @@ package day1;
  */
 public class Santa {
 
+    private static final int GO_UP_ONE_FLOOR = 1;
+    private static final int GO_DOWN_ONE_FLOOR = -1;
+    private static final int DO_NOT_MOVE = 0;
+
     public static int goToFloor(String floorSpec) {
         int floor = 0;
 
         for(int i = 0; i < floorSpec.length(); i++) {
-            if(floorSpec.charAt(i) == '(') {
-                floor += 1;
-            }
-
-            if(floorSpec.charAt(i) == ')') {
-                floor -= 1;
-            }
+            floor += adjustFloor( floorSpec.charAt(i) );
         }
 
         return floor;
@@ -25,13 +23,7 @@ public class Santa {
         int floor = 0;
 
         for(int i = 0; i < floorSpec.length(); i++) {
-            if(floorSpec.charAt(i) == '(') {
-                floor += 1;
-            }
-
-            if(floorSpec.charAt(i) == ')') {
-                floor -= 1;
-            }
+            floor += adjustFloor( floorSpec.charAt(i) );
 
             if(floor < 0) {
                 return i + 1;
@@ -39,5 +31,15 @@ public class Santa {
         }
 
         return 0;
+    }
+
+    private static int adjustFloor(char floorSymbol) {
+        if( floorSymbol == '(' ) {
+            return GO_UP_ONE_FLOOR;
+        } else if( floorSymbol == ')' ) {
+            return GO_DOWN_ONE_FLOOR;
+        } else {
+            return DO_NOT_MOVE;
+        }
     }
 }

@@ -40,6 +40,11 @@ public class SantaTest {
     }
 
     @Test
+    public void noNegative() {
+        assertEquals(0, Santa.getFirstNegativeIndex("("));
+    }
+
+    @Test
     public void getFirstNegativeIndex() {
         assertEquals(1, Santa.getFirstNegativeIndex(")"));
     }
