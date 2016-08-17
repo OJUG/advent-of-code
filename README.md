@@ -4,7 +4,7 @@ OJUGers, join us in participating in Advent (in August!) of Code
 Find the Advent of Code puzzles here:  http://adventofcode.com
 
 ## To participate:
-1. Send https://github.com/JCake your Gitlab user id to get added to the advent-of-code group.
+1. Send https://github.com/JCake your Github user id to get added to the advent-of-code group.
 1. Clone this project.
 1. Add a directory labeled with your name in the root.
 1. Add your solutions to the various problems to your named directory.  Make sure you made it clear which day's puzzle your code is solving!
