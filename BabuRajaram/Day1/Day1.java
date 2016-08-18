@@ -14,6 +14,7 @@ public class Day1 {
       }
    }
 
+
    public static int countFloors(String s, char c)
    {
       int count=0;
