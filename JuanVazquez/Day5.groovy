@@ -19,7 +19,7 @@ assert !isNiceString('haegwjzuvuyypxyu')
 assert !isNiceString('dvszwmarrgswjxmb')
 //solution part 1 
 assert fileText.findAll{ isNiceString(it.trim()) }.size() == 255
-//part test cases
+//part 2 test cases
 assert isNiceString2('qjhvhtzxzqqjkmpb')
 assert isNiceString2('xxyxx')
 assert !isNiceString2('uurcxstgmygtbstg')
