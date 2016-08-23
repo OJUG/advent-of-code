@@ -27,7 +27,7 @@ public class Main {
         int total_str_chars = 0;
         int total_mem_chars = 0;
         List<String> instructions;
-        Path path = Paths.get("/Users/rob/Projects/Java/Day8/src/com/company/input");
+        Path path = Paths.get("./input");
         try {
             instructions = Files.readAllLines(path);
             Iterator<String> i = instructions.iterator();

@@ -77,7 +77,7 @@ public class Main {
         long[] values = new long[2];
         String[] operands = new String[2];
         List<String> instructions;
-        Path path = Paths.get("/Users/rob/Projects/Java/Day7/src/com/company/input");
+        Path path = Paths.get("./input");
         try {
             instructions = Files.readAllLines(path);
             Iterator<String> i = instructions.iterator();
