@@ -9,8 +9,14 @@ try {
 }
 
 def totalSqFt = 0
+def ribbonLength = 0
 file.readLines().forEach({ line ->
-    totalSqFt += new Gift(line).findWrappingArea()
+
+    Gift gift = new Gift(line)
+    totalSqFt += gift.findWrappingArea()
+    ribbonLength += gift.ribbonCircumference() + gift.bowLength()
+    println "$line ${gift.ribbonCircumference()} ${gift.bowLength()}"
 })
 
 println "Total Sq. Ft. $totalSqFt."
+println "Total ribbon Ft. $ribbonLength."

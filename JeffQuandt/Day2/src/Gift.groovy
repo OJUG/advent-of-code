@@ -29,8 +29,15 @@ class Gift {
         smallest
     }
 
-    def findVolume() {
-
+    def bowLength() {
+        height * width * length
     }
 
+    def ribbonCircumference() {
+        def shortest = (height + width) * 2
+
+        shortest = Math.min(shortest, (height + length) *2)
+        shortest = Math.min(shortest, (width + length) *2)
+        shortest
+    }
 }
