@@ -1,6 +1,3 @@
-/**
- * Created by req89790 on 08/23/2016.
- */
 class Gift {
 
     Integer height

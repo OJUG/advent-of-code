@@ -1,7 +1,4 @@
 package part1
-/**
- * Created by req89790 on 08/17/2016.
- */
 class LightGrid {
 
     List lights = []

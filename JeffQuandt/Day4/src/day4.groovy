@@ -1,8 +1,5 @@
 import java.security.MessageDigest
 
-/**
- * Created by req89790 on 08/24/2016.
- */
 def key = 'yzbqklnj'
 
 MessageDigest hasher = MessageDigest.getInstance('MD5')
