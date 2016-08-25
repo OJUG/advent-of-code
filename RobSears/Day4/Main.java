@@ -16,28 +16,26 @@ import java.security.NoSuchAlgorithmException;
 
 public class Main {
 
+    public static int zeroes;
+
     public static void main(String[] args) {
 
-        // No need for an input file here, we can use CLI args:
-        if (args.length == 0) {
-          System.out.println("Please specify your puzzle input.");
-          System.out.println("Usage: java Main 'abcdef'");
-          return;
-        }
+        String message  = "ckczppom";
 
-        String message  = args[0];
-        String hash = "";
-        int counter = 0;
+        for (int i=5;i<=6;i++) {
+            Main.zeroes = i;
+            String hash = "";
+            int counter = 0;
+            while (counter > -1) {
+                hash = MD5(message + counter);
+                if (HashCheck(hash)) {
+                    break;
+                }
+                counter++;
 
-        while (counter > -1) {
-            hash = MD5(message + counter);
-            if (HashCheck(hash)) {
-                break;
             }
-            counter++;
+            System.out.printf("Answer is %d. The hash of %s is %s.\n", counter, (message+counter), hash);
         }
-
-        System.out.printf("Answer is %d. The hash of %s is %s.\n", counter, (message+counter), hash);
 
     }
 
@@ -47,13 +45,13 @@ public class Main {
     */
     public static boolean HashCheck(String hash) {
         int preceding_zeros = 0;
-        for (int j=0; j < 5; j++) {
+        for (int j=0; j < Main.zeroes; j++) {
             String chr = hash.substring(j,j+1);
             if (chr.equals("0")) {
                 preceding_zeros++;
             }
         }
-        return (preceding_zeros == 5);
+        return (preceding_zeros == Main.zeroes);
     }
 
     /*
