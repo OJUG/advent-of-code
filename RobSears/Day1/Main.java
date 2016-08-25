@@ -20,6 +20,7 @@ public class Main {
     public static void main(String[] args) {
 
         int floor = 0;
+        int basement = 0;
         List<String> directions;
         Path path = Paths.get("./input");
         try {
@@ -37,12 +38,15 @@ public class Main {
                     else if (floor_move.equals(")")) {
                         floor--;
                     }
+                    if (floor < 0 && basement == 0) {
+                        basement = j+1;
+                    }
                 }
             }
         } catch (IOException e) {
             System.out.println("IOException raised. Did you create the input file?");
             e.printStackTrace();
         }
-        System.out.printf("Santa ends up on floor %d.\n", floor);
+        System.out.printf("Santa ends up on floor %d. He first visits the basement at position %d.\n", floor, basement);
     }
 }
