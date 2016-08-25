@@ -23,6 +23,7 @@ public class Main {
     public static void main(String[] args) {
 
         int total_area = 0;
+        int total_ribbon = 0;
         List<String> package_sizes;
         Path path = Paths.get("./input");
         try {
@@ -37,10 +38,15 @@ public class Main {
                 int height = Integer.parseInt(pkgsizes[2]);
 
                 List<Integer> areas = Arrays.asList(length*width, width*height, height*length);
-                int min = Collections.min(areas);
+                List<Integer> perimeters = Arrays.asList(2*(length+width), 2*(width+height), 2*(height+length));
+                int minArea = Collections.min(areas);
+                int minPerimeter = Collections.min(perimeters);
 
-                int area = 2*length*width + 2*width*height + 2*height*length + min;
+                int area = 2*length*width + 2*width*height + 2*height*length + minArea;
                 total_area += area;
+
+                int ribbon = minPerimeter + length*width*height;
+                total_ribbon += ribbon;
 
             }
         } catch (IOException e) {
@@ -48,7 +54,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        System.out.printf("Total area: %d\n", total_area);
+        System.out.printf("Total area: %d, total ribbon: %d\n", total_area, total_ribbon);
 
     }
 }
