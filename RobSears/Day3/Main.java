@@ -28,10 +28,15 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int x =0;
-        int y = 0;
+        int santaX = 0;
+        int santaY = 0;
+
+        int robotX = 0;
+        int robotY = 0;
+
         int total_moves = 0;
-        int unique_coords = 1;
+        int unique_houses = 1;
+
         List<String> directions;
         Path path = Paths.get("./input");
         try {
@@ -47,25 +52,29 @@ public class Main {
                     total_moves++;
                     String floor_move = moves.substring(k,k+1);
                     if (floor_move.equals("^")) {
-                        y++;
+                        santaY += (isEven(k)) ? 1 : 0;
+                        robotY += (!isEven(k)) ? 1 : 0;
                     }
                     else if (floor_move.equals("v")) {
-                        y--;
+                        santaY -= (isEven(k)) ? 1 : 0;
+                        robotY -= (!isEven(k)) ? 1 : 0;
                     }
                     else if (floor_move.equals("<")) {
-                        x--;
+                        santaX -= (isEven(k)) ? 1 : 0;
+                        robotX -= (!isEven(k)) ? 1 : 0;
                     }
                     else if (floor_move.equals(">")) {
-                        x++;
+                        santaX += (isEven(k)) ? 1 : 0;
+                        robotX += (!isEven(k)) ? 1 : 0;
                     }
 
                     int[] coords = new int[2];
-                    coords[0] = x;
-                    coords[1] = y;
+                    coords[0] = (isEven(k)) ? santaX : robotX;
+                    coords[1] = (isEven(k)) ? santaY : robotY;
 
-                    if (unique(houses, x, y)) {
+                    if (unique(houses, coords[0], coords[1])) {
                         houses[k] = coords;
-                        unique_coords++;
+                        unique_houses++;
                     }
 
                 }
@@ -75,7 +84,7 @@ public class Main {
             System.out.println("IOException raised. Did you create the input file?");
             e.printStackTrace();
         }
-        System.out.printf("Santa made %d moves and visited %d houses.\n", total_moves, unique_coords);
+        System.out.printf("Santa made %d moves and visited %d houses.\n", total_moves, unique_houses);
     }
 
     public static boolean unique(int[][] houses, int x, int y) {
@@ -85,5 +94,9 @@ public class Main {
             }
         }
         return true;
+    }
+
+    public static boolean isEven(int number) {
+        return ((number & 1) == 0);
     }
 }
