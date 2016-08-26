@@ -18,7 +18,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int nice_lines = 0;
+        int niceLinesOne = 0;
+        int niceLinesTwo = 0;
         List<String> lines;
         Path path = Paths.get("./input");
 
@@ -27,16 +28,20 @@ public class Main {
             Iterator<String> i = lines.iterator();
 
             while(i.hasNext()) {
-                String moves = i.next();
+                String line = i.next();
 
-                if (niceVowels(moves) && repeatedChars(moves) && doesNotContainChars(moves)) {
-                    nice_lines++;
+                // Part 1:
+                if (niceVowels(line) && repeatedChars(line) && doesNotContainChars(line)) {
+                    niceLinesOne++;
+                }
+
+                // Part 2:
+                if (twoNonOverlappingPairs(line) && oneRepeatLetter(line)) {
+                    niceLinesTwo++;
                 }
 
             }
-
-            System.out.printf("Santa's list has %d nice lines.\n", nice_lines);
-
+            System.out.printf("Part 1 nice lines: %d, Part 2 nice lines: %d.\n", niceLinesOne, niceLinesTwo);
         } catch (IOException e) {
             System.out.println("IOException raised. Did you create the input file?");
             e.printStackTrace();
@@ -78,8 +83,8 @@ public class Main {
     }
 
     /*
-        Accepts a string and looks for certain substrings to avoid.
-        Returns true if none of those substrings are found.
+        Accepts a string and looks for substrings to avoid.
+        Returns true if no substrings are found.
      */
     public static boolean doesNotContainChars(String line) {
         for (int j=0; j < line.length()-1; j++) {
@@ -91,5 +96,38 @@ public class Main {
         return true;
     }
 
+    /*
+        Accepts a line from the list and looks for a 2 character substring that is
+        repeated later in the string.
+        RETURN true if a matching substring is found
+     */
+    public static boolean twoNonOverlappingPairs(String line) {
+        String pair;
+        for (int i=0;i<line.length()-1;i++) {
+            pair = line.substring(i,i+2);
+            for (int j=i+2; j<line.length()-1;j++) {
+                String testPair=line.substring(j,j+2);
+                if (pair.equals(testPair)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
+    /*
+        Accepts a line from the list and looks for a 3-character substring where the
+        first and last character are the same.
+        RETURN true if a matching substring is found.
+     */
+    public static boolean oneRepeatLetter(String line) {
+        String trip;
+        for (int i=0;i<line.length()-2;i++) {
+            trip = line.substring(i,i+3);
+            if (trip.substring(0,1).equals(trip.substring(2,3))) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

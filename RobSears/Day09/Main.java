@@ -33,7 +33,9 @@ import java.util.regex.Pattern;
 public class Main {
 
     public static int minDistance;
+    public static int maxDistance;
     public static String minRoute;
+    public static String maxRoute;
     public static Map<String, Integer> destinations = new HashMap<String, Integer>();
 
     public static void main(String[] args) {
@@ -49,12 +51,13 @@ public class Main {
             }
 
             List<String> allCities = getAllCities();
-            for (int j=0; j<factorial(allCities.size());j++) {
+            for (int j=0; j<factorial(1+allCities.size());j++) {
                 Collections.shuffle(allCities);
                 calculateRoute(allCities);
             }
 
-            System.out.printf("Shortest possible route: %d mi (%s).\n", Main.minDistance, Main.minRoute);
+            System.out.printf("Shortest possible route: %d mi (%s)\n", Main.minDistance, Main.minRoute);
+            System.out.printf("Longest possible route: %d mi (%s)\n", Main.maxDistance, Main.maxRoute);
 
 
         } catch (IOException e) {
@@ -147,6 +150,9 @@ public class Main {
         if (Main.minDistance == 0 || distance < Main.minDistance) {
             Main.minRoute = route;
             Main.minDistance = distance;
+        } else if (Main.minDistance == 0 || distance > Main.maxDistance) {
+            Main.maxRoute = route;
+            Main.maxDistance = distance;
         }
     }
 
