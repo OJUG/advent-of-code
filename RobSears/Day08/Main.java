@@ -26,6 +26,7 @@ public class Main {
 
         int total_str_chars = 0;
         int total_mem_chars = 0;
+        int total_enc_mem_chars = 0;
         List<String> instructions;
         Path path = Paths.get("./input");
         try {
@@ -34,11 +35,18 @@ public class Main {
 
             while(i.hasNext()) {
                 String instruction = i.next();
+
+                // Part 1:
                 String new_instruction = transformString(instruction);
                 int str_chars = instruction.length();
                 int mem_chars = new_instruction.length() - 2;
                 total_mem_chars += mem_chars;
                 total_str_chars += str_chars;
+
+                // Part 2:
+                String enc_instruction = encodeString(instruction);
+                int enc_mem_chars = enc_instruction.length();
+                total_enc_mem_chars += enc_mem_chars;
             }
 
 
@@ -47,13 +55,14 @@ public class Main {
             e.printStackTrace();
         }
 
-        System.out.printf("String chars less memory chars: %d.\n", (total_str_chars - total_mem_chars));
+        System.out.printf("Part 1 answer: %d.\n", (total_str_chars - total_mem_chars));
+        System.out.printf("Part 2 answer: %d.\n", (total_enc_mem_chars - total_str_chars));
 
     }
 
     /*
         Given a line from the input, translate the escape sequences. We don't really
-        care what they escape to for the purposes of this challence, so we simply
+        care what they escape to for the purposes of this challenge, so we simply
         replace them with a single character.
         RETURNS the transformed string.
      */
@@ -63,4 +72,19 @@ public class Main {
                 replaceAll("\\\\x[a-zA-Z0-9]{2}", "B").
                 replaceAll("\\\\\"","C");
     }
+
+    /*
+        Given a line from the input, encode it.
+        RETURNS the encoded string
+     */
+    public static String encodeString(String instruction) {
+        String transformedString = instruction.
+                replaceAll("\\\\", Matcher.quoteReplacement("___")).
+                replaceAll("\"", "\\\\\"").
+                replaceAll("\'", "\\\\\'").
+                replaceAll("___", "\\\\\\\\");
+
+        return String.format("\"%s\"", transformedString);
+    }
+
 }
